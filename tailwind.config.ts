@@ -47,6 +47,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Neo-Brutalist specific accent colors
+        brutal: {
+          yellow: "#FFE800",
+          pink: "#FF007F",
+          blue: "#00E5FF",
+          green: "#00FF00",
+        }
       },
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
@@ -58,6 +65,13 @@ export default {
         "glow-primary": "var(--glow-primary)",
         "glow-accent": "var(--glow-accent)",
         "glow-card": "var(--glow-card)",
+        /* --- NEO-BRUTALISM SHADOWS --- */
+        "brutal-sm": "2px 2px 0px 0px rgba(0,0,0,1)",
+        "brutal": "4px 4px 0px 0px rgba(0,0,0,1)",
+        "brutal-lg": "8px 8px 0px 0px rgba(0,0,0,1)",
+        "brutal-xl": "12px 12px 0px 0px rgba(0,0,0,1)",
+        /* For dark mode (if used) */
+        "brutal-dark": "4px 4px 0px 0px rgba(255,255,255,1)",
       },
       transitionProperty: {
         smooth: "var(--transition-smooth)",
@@ -69,20 +83,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {

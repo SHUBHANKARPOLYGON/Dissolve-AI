@@ -101,33 +101,38 @@ const Features = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-sans">
       <Navbar />
       
-      <div className="pt-24 pb-20 px-4">
-        <div className="container mx-auto">
+      <div className="pt-32 pb-20 px-4 border-b-[3px] border-border">
+        <div className="container mx-auto max-w-6xl">
+          
           {/* Header */}
-          <div className="text-center mb-16 space-y-4">
-            <h1 className="text-4xl md:text-6xl font-bold">
-              Powerful <span className="bg-gradient-to-r from-orange-500 via-yellow-400 to-cyan-500 bg-clip-text text-transparent">Features</span>
+          <div className="text-center mb-20 space-y-6">
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight">
+              Powerful <span className="bg-primary text-primary-foreground px-4 py-1 border-[3px] border-border shadow-brutal-sm inline-block transform rotate-2">Features</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Everything you need to navigate complex repositories and contribute meaningfully to open source projects
+            <p className="text-xl font-bold text-muted-foreground max-w-3xl mx-auto">
+              Everything you need to navigate complex repositories and contribute meaningfully to open source projects.
             </p>
           </div>
 
           {/* Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="relative p-8 rounded-2xl border border-border bg-card text-center group hover:border-primary/50 transition-all"
+                className="relative p-8 rounded-none border-[3px] border-border bg-card text-center shadow-brutal hover:-translate-y-2 hover:shadow-brutal-lg transition-all"
               >
-                <benefit.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                <div className="text-3xl font-bold bg-gradient-to-r from-cyan-500 via-cyan-400 to-cyan-500 bg-clip-text text-transparent mb-2">
+                <div className="w-16 h-16 border-[3px] border-border bg-secondary flex items-center justify-center mx-auto mb-6 shadow-brutal-sm transform -rotate-3 hover:rotate-0 transition-transform">
+                  <benefit.icon className="h-8 w-8 text-foreground" />
+                </div>
+                <div className="text-3xl font-black text-foreground mb-3">
                   {benefit.stat}
                 </div>
-                <p className="text-muted-foreground">{benefit.label}</p>
+                <p className="text-muted-foreground font-bold uppercase tracking-wider text-sm">
+                  {benefit.label}
+                </p>
               </div>
             ))}
           </div>
@@ -137,16 +142,23 @@ const Features = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className={`group relative p-8 rounded-2xl border border-border bg-card hover:border-${feature.color}/50 transition-all hover:shadow-glow-${feature.color}`}
+                className="group relative p-8 rounded-none border-[3px] border-border bg-background hover:-translate-y-2 hover:shadow-brutal-lg transition-all shadow-brutal"
               >
-                <div className={`absolute inset-0 bg-gradient-${feature.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity`} />
-                <feature.icon className={`h-10 w-10 text-${feature.color} mb-4`} />
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground mb-4">{feature.description}</p>
-                <ul className="space-y-2">
+                <div className={`w-14 h-14 border-[3px] border-border flex items-center justify-center mb-6 shadow-brutal-sm ${feature.color === 'primary' ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'}`}>
+                  <feature.icon className="h-7 w-7" />
+                </div>
+                <h3 className="text-xl font-black uppercase mb-3 text-foreground">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground font-medium mb-6 leading-relaxed">
+                  {feature.description}
+                </p>
+                <ul className="space-y-3">
                   {feature.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className={`text-${feature.color} mt-1`}>•</span>
+                    <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground font-medium">
+                      <span className={`font-black mt-0.5 ${feature.color === 'primary' ? 'text-primary' : 'text-accent'}`}>
+                        →
+                      </span>
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -156,45 +168,46 @@ const Features = () => {
           </div>
 
           {/* Use Cases */}
-          <div className="mt-24">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Perfect for <span className="bg-gradient-to-r from-orange-500 via-yellow-400 to-cyan-500 bg-clip-text text-transparent">Every Developer</span>
+          <div className="mt-32 pt-20 border-t-[3px] border-border">
+            <h2 className="text-4xl md:text-5xl font-black text-center mb-16 uppercase tracking-tight">
+              Perfect for <span className="bg-secondary text-secondary-foreground px-4 py-1 border-[3px] border-border shadow-brutal-sm inline-block transform -rotate-1">Every Developer</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-8 rounded-2xl border border-border bg-card">
-                <h3 className="text-xl font-semibold mb-4">New Contributors</h3>
-                <p className="text-muted-foreground">
+              <div className="p-8 rounded-none border-[3px] border-border bg-card shadow-brutal">
+                <h3 className="text-2xl font-black uppercase mb-4 text-foreground">New Contributors</h3>
+                <p className="text-muted-foreground font-medium leading-relaxed">
                   Lower the barrier to entry for junior developers, career switchers, and students 
                   seeking their first meaningful open-source contributions.
                 </p>
               </div>
 
-              <div className="p-8 rounded-2xl border border-border bg-card">
-                <h3 className="text-xl font-semibold mb-4">Experienced Developers</h3>
-                <p className="text-muted-foreground">
+              <div className="p-8 rounded-none border-[3px] border-border bg-card shadow-brutal">
+                <h3 className="text-2xl font-black uppercase mb-4 text-foreground">Experienced Developers</h3>
+                <p className="text-muted-foreground font-medium leading-relaxed">
                   Save time when contributing to unfamiliar codebases. Get up to speed quickly 
                   and focus on solving problems rather than understanding context.
                 </p>
               </div>
 
-              <div className="p-8 rounded-2xl border border-border bg-card">
-                <h3 className="text-xl font-semibold mb-4">Project Maintainers</h3>
-                <p className="text-muted-foreground">
+              <div className="p-8 rounded-none border-[3px] border-border bg-card shadow-brutal">
+                <h3 className="text-2xl font-black uppercase mb-4 text-foreground">Project Maintainers</h3>
+                <p className="text-muted-foreground font-medium leading-relaxed">
                   Provide better guidance to contributors automatically. Reduce time spent 
                   on issue clarification and review cycles.
                 </p>
               </div>
 
-              <div className="p-8 rounded-2xl border border-border bg-card">
-                <h3 className="text-xl font-semibold mb-4">Enterprise Teams</h3>
-                <p className="text-muted-foreground">
+              <div className="p-8 rounded-none border-[3px] border-border bg-card shadow-brutal">
+                <h3 className="text-2xl font-black uppercase mb-4 text-foreground">Enterprise Teams</h3>
+                <p className="text-muted-foreground font-medium leading-relaxed">
                   Contribute to upstream dependencies more effectively. Understand and modify 
                   third-party code with confidence.
                 </p>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 

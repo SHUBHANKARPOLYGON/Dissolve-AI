@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Code2, Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export const Navbar = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-    
+
     setTheme(initialTheme);
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
   }, []);
@@ -22,59 +23,122 @@ export const Navbar = () => {
     document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Features", path: "/features" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b-[3px] border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative">
-              <Code2 className="h-8 w-8 text-primary transition-transform group-hover:scale-110" />
-              <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+
+          {/* Logo Section */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-14 h-14 flex-shrink-0">
+              <img
+                src="/logo.png"
+                alt="DissolveAI Logo"
+                className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
+                style={{ imageRendering: 'auto' }}
+              />
             </div>
-            <span className="text-xl font-bold bg-gradient-primary bg-clip-text ">
-              DissolveAI
+            <span className="text-2xl font-black tracking-tight uppercase mt-1">
+              Dissolve<span className="text-primary">-AI</span>
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Home
-            </Link>
-            <Link to="/features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Features
-            </Link>
-            <Link to="/about" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              About
-            </Link>
-            <Link to="/contact" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Contact
-            </Link>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="px-4 py-2 text-sm font-bold uppercase tracking-wider border-[3px] border-transparent hover:border-border hover:bg-secondary hover:text-secondary-foreground transition-all"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center gap-4">
             <Button
-              variant="ghost"
+              variant="outline"
               size="icon"
               onClick={toggleTheme}
-              className="relative overflow-hidden group"
+              className="border-[3px] border-border rounded-none shadow-brutal-sm hover:-translate-y-0.5 hover:shadow-brutal active:translate-y-0 active:shadow-none transition-all"
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
             </Button>
-            
-            <Button
-              variant="default"
-              asChild
-              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-glow-card transition-all"
+
+            {/* FIXED: Removed Button asChild wrapper for flawless clicking */}
+            <a
+              href="https://dissolve.ai.shubhankartiwary.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center h-10 px-4 py-2 border-[3px] border-border rounded-none bg-primary text-primary-foreground font-bold shadow-brutal md:hover:-translate-y-0.5 hover:shadow-brutal-lg active:translate-y-0 active:shadow-none transition-all uppercase"
             >
-              <a href={import.meta.env.VITE_APP_URL} className="hidden sm:inline-flex">
-                Try It Out
-              </a>
+              Try It Out
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="flex items-center gap-2 md:hidden">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={toggleTheme}
+              className="border-[3px] border-border rounded-none shadow-brutal-sm"
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+
+            <Button
+              variant="outline"
+              size="icon"
+              className="border-[3px] border-border rounded-none shadow-brutal-sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Navigation Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t-[3px] border-border bg-background">
+          <div className="flex flex-col p-4 space-y-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-4 py-3 text-lg font-bold uppercase tracking-wider border-[3px] border-transparent hover:border-border hover:bg-secondary transition-all"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-4 mt-2 border-t-[3px] border-border">
+              {/* FIXED: Removed Button asChild wrapper for flawless mobile tapping */}
+              <a
+                href="https://dissolve.ai.shubhankartiwary.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-full py-4 border-[3px] border-border rounded-none bg-primary text-primary-foreground font-bold shadow-brutal-sm active:translate-y-0.5 active:shadow-none transition-all uppercase"
+              >
+                Try It Out
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

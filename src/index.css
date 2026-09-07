@@ -2,93 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 5%;
+    /* Neo-Brutalism Light Mode: Cream background, pure black lines */
+    --background: 44 29% 97%; /* Cream */
+    --foreground: 0 0% 0%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 5%;
+    --card: 0 0% 100%; /* Pure white cards */
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 98%;
+    /* Pure black for primary elements */
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 10%;
+    /* Bright Neo-brutal Yellow for secondary/highlights */
+    --secondary: 54 100% 50%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 30%; /* darkened from 40% for AA contrast on 90% muted bg */
 
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 330 100% 45%; /* Brutal Pink, dialed back 5% from pure 50% for AA vs white text */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 85% 45%; /* pure 100%/50% red clips on bright screens */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 95%;
-    --ring: 0 0% 20%;
+    --success: 142 76% 32%;
+    --success-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    /* Pure black borders for the harsh grid look */
+    --border: 0 0% 0%;
+    --input: 0 0% 100%;
+    --ring: 0 0% 0%;
 
-    /* Custom design tokens - Light mode */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 25%));
-    --gradient-accent: linear-gradient(135deg, hsl(0 0% 15%), hsl(0 0% 30%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 95%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 96%));
-    
-    --glow-primary: 0 8px 32px hsl(0 0% 10% / 0.15);
-    --glow-accent: 0 8px 32px hsl(0 0% 15% / 0.2);
-    --glow-card: 0 4px 20px hsl(0 0% 0% / 0.08);
-    
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Sharp corners */
+    --radius: 0.15rem;
+
+    /* Hard shadow system */
+    --shadow-offset: 4px;
+    --glow-primary: var(--shadow-offset) var(--shadow-offset) 0px 0px rgba(0, 0, 0, 1);
+    --glow-card: var(--shadow-offset) var(--shadow-offset) 0px 0px rgba(0, 0, 0, 1);
+    --glow-hover: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+    --glow-active: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+
+    --transition-smooth: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 95%;
+    /* Neo-Brutalism Dark Mode: Deep Charcoal background to let lines pop */
+    --background: 220 10% 16%; /* Deep Slate / Charcoal */
+    --foreground: 0 0% 98%; /* Off-white text */
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 10% 22%; /* Slightly lighter slate for cards */
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 10% 22%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 95%;
-    --primary-foreground: 0 0% 5%;
+    /* High-contrast Neon Colors for Dark Mode */
+    --primary: 54 100% 50%; /* Neon Yellow */
+    --primary-foreground: 0 0% 0%; /* Black text on yellow */
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 221 83% 53%; /* Cobalt Blue — Tailwind blue-600 equiv, reads "product" not "toy" */
+    --secondary-foreground: 0 0% 100%; /* White text — ~4.5:1 contrast, passes AA */
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 220 10% 30%;
+    --muted-foreground: 0 0% 75%;
 
-    --accent: 0 0% 90%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 180 100% 45%; /* Neon Cyan for highlights — kept at full pop since its job is "glow", not "action" */
+    --accent-foreground: 0 0% 0%; /* Black text on cyan */
 
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 95%;
+    --destructive: 0 90% 55%;
+    --destructive-foreground: 0 0% 0%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 80%;
+    --success: 142 70% 42%;
+    --success-foreground: 0 0% 0%;
 
-    /* Custom design tokens - Dark mode */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 0% 15%));
-    --gradient-accent: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 20%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 8%), hsl(0 0% 5%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 0% 10%));
-    
-    --glow-primary: 0 8px 32px hsl(0 0% 95% / 0.15);
-    --glow-accent: 0 8px 32px hsl(0 0% 90% / 0.2);
-    --glow-card: 0 4px 20px hsl(0 0% 100% / 0.05);
+    /* Off-white borders — pure black was invisible against the charcoal bg */
+    --border: 0 0% 95%;
+    --input: 220 10% 22%;
+    --ring: 0 0% 95%;
+
+    --shadow-offset: 4px;
+    --glow-primary: var(--shadow-offset) var(--shadow-offset) 0px 0px rgba(255, 255, 255, 1);
+    --glow-card: var(--shadow-offset) var(--shadow-offset) 0px 0px rgba(255, 255, 255, 1);
+    --glow-hover: 6px 6px 0px 0px rgba(255, 255, 255, 1);
+    --glow-active: 2px 2px 0px 0px rgba(255, 255, 255, 1);
   }
 }
 
@@ -97,7 +100,110 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  *:focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary border-2 border-border;
+  }
+}
+
+@layer utilities {
+  /* ============================================
+     Brutal Hover-Lift System
+     Add `.shadow-brutal` to any card, button, or
+     badge you want the "press up / push down" effect on.
+     ============================================ */
+
+  .shadow-brutal {
+    box-shadow: var(--glow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .shadow-brutal:hover {
+    box-shadow: var(--glow-hover);
+    transform: translate(-2px, -2px);
+  }
+
+  .shadow-brutal:active {
+    box-shadow: var(--glow-active);
+    transform: translate(2px, 2px);
+  }
+
+  /* Smaller offset variant — good for tags/badges/small buttons */
+  .shadow-brutal-sm {
+    box-shadow: 2px 2px 0px 0px hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .shadow-brutal-sm:hover {
+    box-shadow: 4px 4px 0px 0px hsl(var(--border));
+    transform: translate(-1px, -1px);
+  }
+
+  .shadow-brutal-sm:active {
+    box-shadow: 1px 1px 0px 0px hsl(var(--border));
+    transform: translate(1px, 1px);
+  }
+
+  /* Larger offset variant — hero cards, feature panels */
+  .shadow-brutal-lg {
+    box-shadow: 8px 8px 0px 0px hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .shadow-brutal-lg:hover {
+    box-shadow: 12px 12px 0px 0px hsl(var(--border));
+    transform: translate(-4px, -4px);
+  }
+
+  .shadow-brutal-lg:active {
+    box-shadow: 4px 4px 0px 0px hsl(var(--border));
+    transform: translate(4px, 4px);
+  }
+
+  /* Lift-only variant — no shadow change, just a subtle rise.
+     Good for things that already sit inside a shadowed card. */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translate(-2px, -2px);
+  }
+
+  .hover-lift:active {
+    transform: translate(1px, 1px);
+  }
+
+  .border-brutal {
+    border-width: 2px;
+    @apply border-border;
   }
 }

@@ -62,16 +62,16 @@ export const Footer = () => {
             <h3 className="font-black text-lg uppercase tracking-wider mb-6 text-foreground">Support Us</h3>
             <Button
               asChild
-              className="w-full border-[3px] border-border rounded-none shadow-brutal-sm hover:-translate-y-0.5 hover:shadow-brutal active:translate-y-0 active:shadow-none transition-all font-black uppercase bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground"
+              className="w-full border-[3px] border-border rounded-none shadow-brutal-sm md:hover:-translate-y-0.5 hover:shadow-brutal active:translate-y-0 active:shadow-none transition-all font-black uppercase bg-card text-card-foreground hover:bg-[#E8D44D] hover:text-black"
             >
               <a
-                href="https://www.google.com/search?q=DissolveAI"
+                href="https://github.com/shubh-soubhagya/DissolveAI-beta"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-6"
               >
                 <Star className="h-5 w-5 fill-current" />
-                Rate us on Google
+                Star on GitHub
               </a>
             </Button>
           </div>
